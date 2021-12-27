@@ -12,16 +12,16 @@ PHPUnit\TextUI\Application::main();
 --EXPECTF--
 PHPUnit %s by Sebastian Bergmann and contributors.
 
-R                                                                   1 / 1 (100%)*
+R                                                                   1 / 1 (100%)
 
 Time: %s, Memory: %s
 
 There was 1 risky test:
 
 1) Issue1570Test::testOne
-This test did not perform any assertions
+This test printed output: *
 
 %s:14
 
 OK, but incomplete, skipped, or risky tests!
-Tests: 1, Assertions: 0, Risky: 1.
+Tests: 1, Assertions: 1, Risky: 1.

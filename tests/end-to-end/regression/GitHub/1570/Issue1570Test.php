@@ -14,5 +14,7 @@ class Issue1570Test extends TestCase
     public function testOne(): void
     {
         print '*';
+
+        $this->assertTrue(true);
     }
 }
