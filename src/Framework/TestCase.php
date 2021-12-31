@@ -101,6 +101,7 @@ use SebastianBergmann\Exporter\Exporter;
 use SebastianBergmann\GlobalState\ExcludeList as GlobalStateExcludeList;
 use SebastianBergmann\GlobalState\Restorer;
 use SebastianBergmann\GlobalState\Snapshot;
+use SebastianBergmann\Invoker\TimeoutException;
 use SebastianBergmann\ObjectEnumerator\Enumerator;
 use SoapClient;
 use Throwable;
@@ -752,6 +753,13 @@ abstract class TestCase extends Assert implements Reorderable, SelfDescribing, T
             $this->status = TestStatus::failure($e->getMessage());
 
             $emitter->testFailed(
+                $this->valueObjectForEvents(),
+                Event\Code\Throwable::from($e)
+            );
+        } catch (TimeoutException $e) {
+            $this->status = TestStatus::risky($e->getMessage());
+
+            $emitter->testConsideredRisky(
                 $this->valueObjectForEvents(),
                 Event\Code\Throwable::from($e)
             );
